@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Etch-a-Sketch</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel = "icon" href = "images/etch-a-sketch1.png"; 
+                type = "image/x-icon">
+    </head>
+    <body>
+        <header>
+        <h1>Etch-a-Sketch</h1>    
+        </header>
+        <main>
+            <div id="btn-div">
+                <button id="change-size">change-size</button> 
+            </div>  
+            <div id="container">
+
+                <div id="options">
+                    <input class="options"  type="radio" id="rainbow" name="method" value="rainbow">
+                    <label class="options" for="rainbow">Rainbow</label><br>
+                    <input class="options" type="radio" id="black" name="method" value="black" checked="checked">
+                    <label class="options" for="black" >Black</label><br>
+                    <input class="options" type="radio" id="eraser" name="method" value="eraser">
+                    <label class="options" for="eraser" >Eraser</label><br>
+                    <button class="options" id="Grade-Lines">Grade-Lines</button>
+                    <button class="options" id="clear">Clear</button>
+                </div>
+
+                <div  id="grid-container"> </div>
+            </div>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
