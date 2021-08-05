@@ -1,4 +1,58 @@
+current_mode="color-mode";
+let color_btn=document.getElementById("color-mode");
+let rainbow_btn=document.getElementById("rainbow-mode");
+let eraser_btn=document.getElementById("eraser-mode");
 
+color_btn.addEventListener("click",(e)=>{
+current_mode=e.target.id;
+changeButtonColor(e.target.id);
+console.log(e.target.id);
+
+})
+rainbow_btn.addEventListener("click",(e)=>{
+    current_mode=e.target.id;
+    changeButtonColor(e.target.id);
+    console.log(e.target.id);
+})
+eraser_btn.addEventListener("click",(e)=>{
+    current_mode=e.target.id;
+   changeButtonColor(e.target.id);
+   console.log(e.target.id);
+})
+
+function changeButtonColor(id)           //return the two buttons to the defautls
+{
+    if(id==="color-mode")
+    {
+        console.log("y");
+        color_btn.style.color="white";
+        color_btn.style.backgroundColor="black";   
+        eraser_btn.style.color="black";
+        rainbow_btn.style.color="black";
+        rainbow_btn.style.backgroundColor="#dddddd";
+        eraser_btn.style.backgroundColor="#dddddd";
+    }
+    if(id==="rainbow-mode")
+    {
+        console.log("masdas");
+        rainbow_btn.style.color="white";
+        rainbow_btn.style.backgroundColor="black";
+        color_btn.style.color="black";
+        eraser_btn.style.color="black";
+        color_btn.style.backgroundColor="#dddddd";
+        eraser_btn.style.backgroundColor="#dddddd";
+    }
+    if(id==="eraser-mode")
+    {
+        console.log("m");
+        eraser_btn.style.color="white";
+        eraser_btn.style.backgroundColor="black";     
+        color_btn.style.color="black";
+        rainbow_btn.style.color="black";
+        color_btn.style.backgroundColor="#dddddd";
+        rainbow_btn.style.backgroundColor="#dddddd";
+    }
+}
 
 function make_grid(size)
 {
@@ -17,7 +71,7 @@ function make_grid(size)
         }
     }
 }
-make_grid(16);
+make_grid(16); //default size
 
 
 let items=document.getElementsByClassName("grid-item");
@@ -39,18 +93,19 @@ return rgb;
 function change_color(e)
 {
 
-
     let radio=document.getElementById("black");
     let eraser=document.getElementById("eraser");
-    if(radio.checked)
+    let color=document.getElementById("favcolor");
+    if(current_mode==="color-mode")
     {
-        e.target.style.backgroundColor="black";
+        e.target.style.backgroundColor=color.value;
     }
-    else  if(eraser.checked)
+    if(current_mode==="eraser-mode")
     {
+        console.log("1");
         e.target.style.backgroundColor= "#e5e5e5";
     }
-    else
+    if(current_mode==="rainbow-mode")
     {
         e.target.style.backgroundColor= random_color();
     }
@@ -67,30 +122,19 @@ function clear() {
     }
 }
 
+let label=document.getElementById("range-label");
+document.getElementById("myRange").addEventListener("change",(e)=>{
+    clear_grid();
+    make_grid(e.target.value);
+    label.textContent=e.target.value +" x "+ e.target.value 
+})
 
-/////// change size button ///////
-document.getElementById("change-size").addEventListener("click",change_size);
+document.getElementById("myRange").addEventListener("mousemove",(e)=>{
+    label.textContent=e.target.value +" x "+ e.target.value 
+})
 
-function change_size() {
-    newsize=prompt("Enter new size");
-   if( newsize!=null)
-    {
-        newsize=parseInt(newsize);
-        if(newsize>64||newsize<1 || isNaN(newsize))
-        {
-            alert("Enter a number from 1-64 range");
-            change_size();
-        }
-        else
-        {
-            clear_grid();
-            make_grid(newsize);
-        }
-    }
-    
 
-   
-}
+
 
 function clear_grid() {
     document.querySelectorAll(".grid-item")
