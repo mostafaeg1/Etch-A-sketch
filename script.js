@@ -1,8 +1,9 @@
-current_mode="color-mode";
+current_mode="color-mode";                              
 let color_btn=document.getElementById("color-mode");
 let rainbow_btn=document.getElementById("rainbow-mode");
 let eraser_btn=document.getElementById("eraser-mode");
 
+////////// buttons click event ///////////
 color_btn.addEventListener("click",(e)=>{
 current_mode=e.target.id;
 changeButtonColor(e.target.id);
@@ -20,7 +21,7 @@ eraser_btn.addEventListener("click",(e)=>{
    console.log(e.target.id);
 })
 
-function changeButtonColor(id)           //return the two buttons to the defautls
+function changeButtonColor(id)           //return the two another buttons to the defautls
 {
     if(id==="color-mode")
     {
@@ -54,6 +55,7 @@ function changeButtonColor(id)           //return the two buttons to the defautl
     }
 }
 
+
 function make_grid(size)
 {
     let container=document.getElementById("grid-container");
@@ -71,30 +73,9 @@ function make_grid(size)
         }
     }
 }
-make_grid(16); //default size
 
-
-let items=document.getElementsByClassName("grid-item");
-for(let i=0;i<items.length;i++)
+function change_color(e)            //changing color according to the current mode
 {
-   
-}
-
-function random_color()
-{
-const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
-const r = randomBetween(0, 255);
-const g = randomBetween(0, 255);
-const b = randomBetween(0, 255);
-const rgb = `rgb(${r},${g},${b})`; // Collect all to a css color string
-return rgb;
-}
-
-function change_color(e)
-{
-
-    let radio=document.getElementById("black");
-    let eraser=document.getElementById("eraser");
     let color=document.getElementById("favcolor");
     if(current_mode==="color-mode")
     {
@@ -111,6 +92,17 @@ function change_color(e)
     }
 }
 
+function random_color()
+{
+const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
+const r = randomBetween(0, 255);
+const g = randomBetween(0, 255);
+const b = randomBetween(0, 255);
+const rgb = `rgb(${r},${g},${b})`; // Collect all to a css color string
+return rgb;
+}
+
+
 
 //////// clear button ////////
 document.getElementById("clear").addEventListener("click",clear);
@@ -122,19 +114,18 @@ function clear() {
     }
 }
 
+
+///////// range label and input /////////////////
 let label=document.getElementById("range-label");
 document.getElementById("myRange").addEventListener("change",(e)=>{
     clear_grid();
     make_grid(e.target.value);
-    label.textContent=e.target.value +" x "+ e.target.value 
+    label.textContent=e.target.value +" x "+ e.target.value ;
 })
 
 document.getElementById("myRange").addEventListener("mousemove",(e)=>{
-    label.textContent=e.target.value +" x "+ e.target.value 
+    label.textContent=e.target.value +" x "+ e.target.value ;
 })
-
-
-
 
 function clear_grid() {
     document.querySelectorAll(".grid-item")
@@ -164,3 +155,5 @@ function  Grade_lines(e) {
         }
     }
 }
+
+make_grid(16); //default size
